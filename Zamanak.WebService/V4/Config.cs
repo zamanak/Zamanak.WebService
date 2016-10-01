@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Zamanak.WebService
+namespace Zamanak.WebService.V4
 {
     public class Config
     {
@@ -15,11 +15,23 @@ namespace Zamanak.WebService
 
         public string Token { get; set; }
 
-        /// <summary>
-        /// For example http://www.zamanak.ir
-        /// </summary>
         public string ServerBaseUrl { get; set; }
 
-        public string ApiPath { get; set; } = "api/json-v4";
+        public string ApiPath { get; set; }
+
+        public Config(string userName, string password, string uid, string token, string serverBaseUrl = "http://www.zamanak.ir", string apiPath = "api/json-v4")
+        {
+            UserName = userName;
+            Password = password;
+            UID = uid;
+            Token = token;
+            ServerBaseUrl = serverBaseUrl;
+            ApiPath = apiPath;
+        }
+
+        public Config()
+        {
+
+        }
     }
 }
