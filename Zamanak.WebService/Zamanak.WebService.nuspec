@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/zamanak/Zamanak.WebService/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/zamanak/Zamanak.WebService</projectUrl>
+    <iconUrl>http://zamanak.ir/upload/content/108</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>This is a pre release with limited api cover, in next releases we cover more of zamanak.ir api.</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>Zamanak WebService Client Sms Voice VoiceSms OTP Captcha Broadcast Fax Signup Register Validate 2FA</tags>
+  </metadata>
+</package>
