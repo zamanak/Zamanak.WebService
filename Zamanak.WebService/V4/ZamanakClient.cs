@@ -21,6 +21,8 @@ namespace Zamanak.WebService.V4
         {
             this.config = config;
             General = new GeneralResource(config);
+            Campaign = new CampaingResource(config);
+            CampaingReport = new CampaingReportResource(config);
         }
 
         public class CampaingResource
