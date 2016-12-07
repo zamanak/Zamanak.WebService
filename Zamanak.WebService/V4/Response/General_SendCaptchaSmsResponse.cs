@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Zamanak.WebService.V4.Response.General
+namespace Zamanak.WebService.V4.Response
 {
-    public class SendCaptchaSmsResponse
+    public class General_SendCaptchaSmsResponse
     {
         public string Message { get; set; }
     }

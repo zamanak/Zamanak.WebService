@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Zamanak.WebService.V4.Response.CampaingReport
+namespace Zamanak.WebService.V4.Response
 {
-    public class GetCampaignLogsResponse
+    public class CampaingReport_GetCampaignLogsResponse
     {
         public List<GetCampaignLogsItemResponse> Data { get; set; }
         public int Successfull { get; set; }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Zamanak.WebService.V4.Request.Campaign
+namespace Zamanak.WebService.V4.Request
 {
-    public class NewCampaignByTextRequest
+    public class Campaign_NewCampaignByTextRequest
     {
         public string Name { get; set; }
 
@@ -19,7 +19,7 @@ namespace Zamanak.WebService.V4.Request.Campaign
 
         public string RepeatTotal { get; set; }
 
-        public NewCampaignByTextRequest(string name, List<string> numbers, string text, string startTime, string stopTime, string repeatTotal)
+        public Campaign_NewCampaignByTextRequest(string name, List<string> numbers, string text, string startTime, string stopTime, string repeatTotal)
         {
             Name = name;
             Numbers = numbers;
@@ -29,7 +29,7 @@ namespace Zamanak.WebService.V4.Request.Campaign
             RepeatTotal = repeatTotal;
         }
 
-        public NewCampaignByTextRequest()
+        public Campaign_NewCampaignByTextRequest()
         {
 
         }

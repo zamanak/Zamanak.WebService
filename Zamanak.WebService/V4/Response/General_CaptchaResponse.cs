@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Zamanak.WebService.V4.Response.General
+namespace Zamanak.WebService.V4.Response
 {
-    public class NumberReaderResponse
+    public class General_CaptchaResponse
     {
         public long Result { get; set; }
 

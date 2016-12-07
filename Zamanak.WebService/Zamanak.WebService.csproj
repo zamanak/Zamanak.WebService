@@ -49,18 +49,18 @@
   <ItemGroup>
     <Compile Include="V4\Config.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="V4\Request\CampaignReport\GetCampaignLogsRequest.cs" />
-    <Compile Include="V4\Request\CampaignReport\GetCampaignStatusRequest.cs" />
-    <Compile Include="V4\Request\Campaign\NewCampaignByTextRequest.cs" />
-    <Compile Include="V4\Request\General\CaptchaRequest.cs" />
-    <Compile Include="V4\Request\General\NumberReaderRequest.cs" />
-    <Compile Include="V4\Request\General\SendCaptchaSmsRequest.cs" />
-    <Compile Include="V4\Response\Campaign\NewCampaignByTextResponse.cs" />
-    <Compile Include="V4\Response\CampaingReport\GetCampaignLogsResponse.cs" />
-    <Compile Include="V4\Response\CampaingReport\GetCampaignStatusResponse.cs" />
-    <Compile Include="V4\Response\General\CaptchaResponse.cs" />
-    <Compile Include="V4\Response\General\NumberReaderResponse.cs" />
-    <Compile Include="V4\Response\General\SendCaptchaSmsResponse.cs" />
+    <Compile Include="V4\Request\CampaignReport_GetCampaignLogsRequest.cs" />
+    <Compile Include="V4\Request\CampaignReport_GetCampaignStatusRequest.cs" />
+    <Compile Include="V4\Request\Campaign_NewCampaignByTextRequest.cs" />
+    <Compile Include="V4\Request\General_CaptchaRequest.cs" />
+    <Compile Include="V4\Request\General_NumberReaderRequest.cs" />
+    <Compile Include="V4\Request\General_SendCaptchaSmsRequest.cs" />
+    <Compile Include="V4\Response\Campaign_NewCampaignByTextResponse.cs" />
+    <Compile Include="V4\Response\CampaingReport_GetCampaignLogsResponse.cs" />
+    <Compile Include="V4\Response\CampaingReport_GetCampaignStatusResponse.cs" />
+    <Compile Include="V4\Response\General_CaptchaResponse.cs" />
+    <Compile Include="V4\Response\General_NumberReaderResponse.cs" />
+    <Compile Include="V4\Response\General_SendCaptchaSmsResponse.cs" />
     <Compile Include="V4\ZamanakClient.cs" />
     <Compile Include="ZamanakException.cs" />
   </ItemGroup>
