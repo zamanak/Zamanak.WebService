@@ -4,17 +4,12 @@ In order to use zamanak api, you should have username and password so feel free 
 some zamanak apis need `uid and token` to work properly so you need to first call `general/authenticate` method to receive uid and token, 
 remember that token is valid for one year.
 
-[Create a Zamanak Client Object](#create-a-zamanak-client-object)
-
-[Sending auto generated random numeric captcha](#sending-auto-generated-random-numeric-captcha)
-
-[Sending a number to specified mobile, number will be read for person](#sending-a-number-to-specified-mobile)
-
-[Create new campaign by text](#create-new-campaign-by-text)
-
-[Get campaign status](#get-campaign-status)
-
-[Get campaign logs](#get-campaign-logs)
++ [Create a Zamanak Client Object](#create-a-zamanak-client-object)
++ [Sending auto generated random numeric captcha](#sending-auto-generated-random-numeric-captcha)
++ [Sending a number to specified mobile, number will be read for person](#sending-a-number-to-specified-mobile)
++ [Create new campaign by text](#create-new-campaign-by-text)
++ [Get campaign status](#get-campaign-status)
++ [Get campaign logs](#get-campaign-logs)
 
 
 ## Create a Zamanak Client Object
