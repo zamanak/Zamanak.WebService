@@ -11,7 +11,7 @@
     <iconUrl>http://zamanak.ir/upload/content/108</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>This is a pre release with limited api cover, in next releases we cover more of zamanak.ir api.</releaseNotes>
+    <releaseNotes>This is a client of zamanak.ir</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>Zamanak WebService Client Sms Voice VoiceSms OTP Captcha Broadcast Fax Signup Register Validate 2FA</tags>
   </metadata>
