@@ -86,6 +86,57 @@ namespace Zamanak.WebService.V4
                     throw new ZamanakException("Some error in calling web service, see inner exception for detail.", ex);
                 }
             }
+
+            public Campaign_NewCampaignByNumbersResponse NewCampaignByNumbers(Campaign_NewCampaignByNumbersRequest req)
+            {
+                try
+                {
+                    JObject jObj = new JObject();
+                    jObj.Add("method", "newCampaignbyNumbers");
+                    jObj.Add("clientId", "api@zamanak.ir");
+                    jObj.Add("clientSecret", "9AmbEG61AgW3CQoSV1p3A4tS9CZ");
+                    jObj.Add("uid", config.UID);
+                    jObj.Add("token", config.Token);
+                    jObj.Add("name", req.Name);
+                    JArray jNumbers = new JArray();
+                    req.Numbers.ForEach(n => jNumbers.Add(n));
+                    jObj.Add("numbers", jNumbers);
+                    jObj.Add("recordingId", req.RecordingId);
+                    jObj.Add("startTime", req.StartTime);
+                    jObj.Add("stopTime", req.StopTime);
+                    jObj.Add("repeatTotal", req.RepeatTotal);
+
+
+                    var request = new RestRequest(config.ApiPath, Method.POST);
+                    request.AddQueryParameter("req", jObj.ToString());
+                    request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                    IRestResponse response = client.Execute(request);
+
+                    if ((int)response.StatusCode == 105)
+                        throw new ZamanakException("SYSTEM_ERROR", 105);
+
+                    if ((int)response.StatusCode != 200)
+                        throw new ZamanakException("UNKNOWN_ERROR", (int)response.StatusCode);
+
+                    JObject jResponse = JObject.Parse(response.Content);
+
+                    JToken error = jResponse.GetValue("error");
+                    if (error != null)
+                        throw new ZamanakException(error.ToString(), ZamanakException.BAD_REQUEST);
+
+                    var res = new Campaign_NewCampaignByNumbersResponse()
+                    {
+                        CampId = jResponse["campId"].ToString()
+                    };
+
+                    return res;
+                }
+                catch (Exception ex)
+                {
+                    throw new ZamanakException("Some error in calling web service, see inner exception for detail.", ex);
+                }
+            }
         }
 
         public class CampaingReportResource

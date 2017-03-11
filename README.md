@@ -8,6 +8,7 @@ remember that token is valid for one year.
 + [Sending auto generated random numeric captcha](#sending-auto-generated-random-numeric-captcha)
 + [Sending a number to specified mobile, number will be read for person](#sending-a-number-to-specified-mobile)
 + [Create new campaign by text](#create-new-campaign-by-text)
++ [Create new campaign by numbers](#create-new-campaign-by-numbers)
 + [Get campaign status](#get-campaign-status)
 + [Get campaign logs](#get-campaign-logs)
 
@@ -55,6 +56,19 @@ numbers.Add("0912*******");
 
 var req = new Campaign_NewCampaignByTextRequest("NAME", numbers, "TEXT", "START_TIME", "STOP_TIME", "REPEAT_TOTAL");
 var res = client.Campaign.NewCampaignByText(req);
+```
+
+### Create new campaign by numbers
+**Note: Empty startTime means now . repeat number shoud be greater than zero : >=1**
+
+```c#
+var numbers = new List<string>();
+numbers.Add("0912*******");
+numbers.Add("0912*******");
+long recordingId = 0; //recordingId of uploaded sound
+
+var req = new Campaign_NewCampaignByNumbersRequest("NAME", numbers, recordingId, "START_TIME", "STOP_TIME", "REPEAT_TOTAL");
+var res = client.Campaign.NewCampaignByNumbers(req);
 ```
 
 ### Get campaign status
