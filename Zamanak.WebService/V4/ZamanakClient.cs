@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using Zamanak.WebService.V4.Request;
 using Zamanak.WebService.V4.Response;
 
@@ -131,6 +132,64 @@ namespace Zamanak.WebService.V4
                     };
 
                     return res;
+                }
+                catch (Exception ex)
+                {
+                    throw new ZamanakException("Some error in calling web service, see inner exception for detail.", ex);
+                }
+            }
+
+            public Campaign_NewMixCampaignResponse NewMixCampaign(Campaign_NewMixCampaignRequest req)
+            {
+                try
+                {
+                    JObject jObj = new JObject();
+                    jObj.Add("method", "newMixCampaign");
+                    jObj.Add("clientId", "api@zamanak.ir");
+                    jObj.Add("clientSecret", "9AmbEG61AgW3CQoSV1p3A4tS9CZ");
+                    jObj.Add("uid", config.UID);
+                    jObj.Add("token", config.Token);
+                    jObj.Add("name", req.Name);
+                    jObj.Add("contact_count", req.ContactCount);
+                    jObj.Add("recording_count", req.RecordingCount);
+                    jObj.Add("numbers_count", req.NumbersCount);
+                    JArray jTo = new JArray();
+                    req.To.ForEach(n => jTo.Add(n));
+                    jObj.Add("to", jTo);
+                    JArray jRecordings = new JArray();
+                    req.Recordings.ForEach(n => jRecordings.Add(n));
+                    jObj.Add("recordings", jRecordings);
+                    JArray jNumbers = new JArray();
+                    req.Numbers.ForEach(n => jNumbers.Add(n));
+                    jObj.Add("numbers", jNumbers);
+                    jObj.Add("sayMethod", req.SayMethod);
+                    jObj.Add("mixType", req.MixType);
+                    jObj.Add("retry", req.Retry);
+
+                    var request = new RestRequest(config.ApiPath, Method.POST);
+                    request.AddQueryParameter("req", jObj.ToString());
+                    request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                    IRestResponse response = client.Execute(request);
+
+                    if ((int)response.StatusCode == 105)
+                        throw new ZamanakException("SYSTEM_ERROR", 105);
+
+                    if ((int)response.StatusCode != 200)
+                        throw new ZamanakException("UNKNOWN_ERROR", (int)response.StatusCode);
+
+                    Regex regex = new Regex(@"\d+");
+                    Match match = regex.Match(response.Content);
+                    if (match.Success)
+                    {
+                        var res = new Campaign_NewMixCampaignResponse()
+                        {
+                            CampId = response.Content
+                        };
+                        return res;
+                    }
+
+                    throw new ZamanakException(response.Content, ZamanakException.BAD_REQUEST);
                 }
                 catch (Exception ex)
                 {
