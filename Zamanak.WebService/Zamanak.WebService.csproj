@@ -49,18 +49,24 @@
   <ItemGroup>
     <Compile Include="V5\Config.cs" />
     <Compile Include="V5\Request\CampaignReport_GetCampaignLogsRequest.cs" />
+    <Compile Include="V5\Request\CampaignReport_LiveNumberStatusRequest.cs" />
     <Compile Include="V5\Request\CampaignReport_GetCampaignStatusRequest.cs" />
     <Compile Include="V5\Request\Campaign_NewCampaignByNumbersRequest.cs" />
     <Compile Include="V5\Request\Campaign_NewCampaignByTextRequest.cs" />
     <Compile Include="V5\Request\Campaign_NewMixCampaignRequest.cs" />
+    <Compile Include="V5\Request\General_TextToVoiceCalculatorRequest.cs" />
+    <Compile Include="V5\Request\General_Text2CodeRequest.cs" />
     <Compile Include="V5\Request\General_CaptchaRequest.cs" />
     <Compile Include="V5\Request\General_NumberReaderRequest.cs" />
     <Compile Include="V5\Request\General_SendCaptchaSmsRequest.cs" />
     <Compile Include="V5\Response\Campaign_NewCampaignByNumbersResponse.cs" />
     <Compile Include="V5\Response\Campaign_NewCampaignByTextResponse.cs" />
     <Compile Include="V5\Response\Campaign_NewMixCampaignResponse.cs" />
+    <Compile Include="V5\Response\CampaingReport_LiveNumberStatusResponse.cs" />
     <Compile Include="V5\Response\CampaingReport_GetCampaignLogsResponse.cs" />
     <Compile Include="V5\Response\CampaingReport_GetCampaignStatusResponse.cs" />
+    <Compile Include="V5\Response\General_TextToVoiceCalculatorResponse.cs" />
+    <Compile Include="V5\Response\General_Text2CodeResponse.cs" />
     <Compile Include="V5\Response\General_CaptchaResponse.cs" />
     <Compile Include="V5\Response\General_NumberReaderResponse.cs" />
     <Compile Include="V5\Response\General_SendCaptchaSmsResponse.cs" />

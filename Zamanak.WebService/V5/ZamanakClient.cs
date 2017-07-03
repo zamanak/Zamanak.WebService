@@ -327,6 +327,55 @@ namespace Zamanak.WebService.V5
                     throw new ZamanakException("Some error in calling web service, see inner exception for detail.", ex);
                 }
             }
+
+            public CampaingReport_LiveNumberStatusResponse LiveNumberStatus(CampaignReport_LiveNumberStatusRequest req)
+            {
+                try
+                {
+                    JObject jObj = new JObject();
+                    jObj.Add("method", "liveNumberStatus");
+                    jObj.Add("clientId", "api@zamanak.ir");
+                    jObj.Add("clientSecret", "9AmbEG61AgW3CQoSV1p3A4tS9CZ");
+                    jObj.Add("uid", config.UID);
+                    jObj.Add("token", config.Token);
+                    jObj.Add("campid", req.CampId);
+                    jObj.Add("phone", req.Phone);
+
+
+                    var request = new RestRequest(config.ApiPath, Method.POST);
+                    request.AddQueryParameter("req", jObj.ToString());
+                    request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                    IRestResponse response = client.Execute(request);
+
+                    if ((int)response.StatusCode == 105)
+                        throw new ZamanakException("SYSTEM_ERROR", 105);
+
+                    if ((int)response.StatusCode != 200)
+                        throw new ZamanakException("UNKNOWN_ERROR", (int)response.StatusCode);
+
+                    JObject jResponse = JObject.Parse(response.Content);
+
+                    JToken error = jResponse.GetValue("error");
+                    if (error != null)
+                        throw new ZamanakException(error.ToString(), ZamanakException.BAD_REQUEST);
+
+                    var res = new CampaingReport_LiveNumberStatusResponse()
+                    {
+                        PhoneNumber = jResponse["phone_number"].ToString(),
+                        StartStamp = jResponse["start_stamp"].ToString(),
+                        CampId = jResponse["campaign_id"].ToString(),
+                        Status = jResponse["status"].ToString(),
+                        Digit = jResponse["digit"].ToString()
+                    };
+
+                    return res;
+                }
+                catch (Exception ex)
+                {
+                    throw new ZamanakException("Some error in calling web service, see inner exception for detail.", ex);
+                }
+            }
         }
 
         public class GeneralResource
@@ -488,6 +537,80 @@ namespace Zamanak.WebService.V5
                     General_SendCaptchaSmsResponse res = new General_SendCaptchaSmsResponse()
                     {
                         Message = jResponse["message"].ToString()
+                    };
+
+                    return res;
+                }
+                catch (Exception ex)
+                {
+                    throw new ZamanakException("Some error in calling web service, see inner exception for detail.", ex);
+                }
+            }
+
+            public General_Text2CodeResponse Text2Code(General_Text2CodeRequest req)
+            {
+                try
+                {
+                    JObject jObj = new JObject();
+                    jObj.Add("method", "text2code");
+                    jObj.Add("clientId", "api@zamanak.ir");
+                    jObj.Add("clientSecret", "9AmbEG61AgW3CQoSV1p3A4tS9CZ");
+                    jObj.Add("uid", config.UID);
+                    jObj.Add("token", config.Token);
+                    jObj.Add("text", req.Text);
+
+                    var request = new RestRequest(config.ApiPath, Method.POST);
+                    request.AddQueryParameter("req", jObj.ToString());
+                    request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                    IRestResponse response = client.Execute(request);
+
+                    if ((int)response.StatusCode == 105)
+                        throw new ZamanakException("SYSTEM_ERROR", 105);
+
+                    if ((int)response.StatusCode != 200)
+                        throw new ZamanakException("UNKNOWN_ERROR", (int)response.StatusCode);
+
+                    General_Text2CodeResponse res = new General_Text2CodeResponse()
+                    {
+                        Content = response.Content
+                    };
+
+                    return res;
+                }
+                catch (Exception ex)
+                {
+                    throw new ZamanakException("Some error in calling web service, see inner exception for detail.", ex);
+                }
+            }
+
+            public General_TextToVoiceCalculatorResponse TextToVoiceCalculator(General_TextToVoiceCalculatorRequest req)
+            {
+                try
+                {
+                    JObject jObj = new JObject();
+                    jObj.Add("method", "textToVoiceCalculator");
+                    jObj.Add("clientId", "api@zamanak.ir");
+                    jObj.Add("clientSecret", "9AmbEG61AgW3CQoSV1p3A4tS9CZ");
+                    jObj.Add("uid", config.UID);
+                    jObj.Add("token", config.Token);
+                    jObj.Add("text", req.Text);
+
+                    var request = new RestRequest(config.ApiPath, Method.POST);
+                    request.AddQueryParameter("req", jObj.ToString());
+                    request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                    IRestResponse response = client.Execute(request);
+
+                    if ((int)response.StatusCode == 105)
+                        throw new ZamanakException("SYSTEM_ERROR", 105);
+
+                    if ((int)response.StatusCode != 200)
+                        throw new ZamanakException("UNKNOWN_ERROR", (int)response.StatusCode);
+
+                    General_TextToVoiceCalculatorResponse res = new General_TextToVoiceCalculatorResponse()
+                    {
+                        LengthInSeconds = long.Parse(response.Content)
                     };
 
                     return res;
