@@ -7,11 +7,14 @@ remember that token is valid for one year.
 + [Create a Zamanak Client Object](#create-a-zamanak-client-object)
 + [Sending auto generated random numeric captcha](#sending-auto-generated-random-numeric-captcha)
 + [Sending a number to specified mobile, number will be read for person](#sending-a-number-to-specified-mobile)
++ [Calculate how long converted text in seconds](#calculate-how-long-converted-text-in-seconds)
++ [Convert your text to base64 encoded wav file](#convert-your-text-to-base64-encoded-wav-file)
 + [Create new campaign by text](#create-new-campaign-by-text)
 + [Create new campaign by numbers](#create-new-campaign-by-numbers)
 + [Create new mix campaign](#create-new-mix-campaign)
 + [Get campaign status](#get-campaign-status)
 + [Get campaign logs](#get-campaign-logs)
++ [Get live number status](#get-live-number-status)
 
 
 ## Create a Zamanak Client Object
@@ -45,6 +48,23 @@ var res = client.General.NumberReader(req);
 ```c#
 var req = new General_SendCaptchaSmsRequest("0912*******", 1234);
 var res = client.General.SendCaptchaSms(req);
+```
+
+### Calculate how long converted text in seconds
+
+```c#
+var req = new General_TextToVoiceCalculatorRequest("YOUR TEXT");
+var res = client.General.TextToVoiceCalculator(req);
+Console.WriteLine("LengthInSeconds=" + res.LengthInSeconds);
+```
+
+### Convert your text to base64 encoded wav file
+**Note: you should decode the result then write in wav file**
+
+```c#
+var req = new General_Text2CodeRequest("YOUR TEXT");
+var res = client.General.Text2Code(req);
+Console.WriteLine("Content=" + res.Content);
 ```
 
 ### Create new campaign by text
@@ -116,4 +136,14 @@ var res = client.CampaignReport.GetCampaignStatus(req);
 var req = new CampaignReport_GetCampaignLogsRequest("CAMP_ID", "PAGE_NUMBER");
 var res = client.CampaignReport.GetCampaignLogs(req);
 //process res
+```
+
+### Get live number status
+
+```c#
+var campId = "CAMP_ID";
+var phone = "0912*******";
+var req = new CampaignReport_LiveNumberStatusRequest(campId, phone);
+var res = client.CampaingReport.LiveNumberStatus(req);
+//process res (res.PhoneNumber,res.StartStamp,res.CampId,res.Status,res.Digit)
 ```
