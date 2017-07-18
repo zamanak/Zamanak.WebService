@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="V5\Config.cs" />
+    <Compile Include="V5\Request\CampaignReport_GetCampaignLogsExtendedRequest.cs" />
     <Compile Include="V5\Request\CampaignReport_GetCampaignLogsRequest.cs" />
     <Compile Include="V5\Request\CampaignReport_LiveNumberStatusRequest.cs" />
     <Compile Include="V5\Request\CampaignReport_GetCampaignStatusRequest.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="V5\Response\Campaign_NewCampaignByNumbersResponse.cs" />
     <Compile Include="V5\Response\Campaign_NewCampaignByTextResponse.cs" />
     <Compile Include="V5\Response\Campaign_NewMixCampaignResponse.cs" />
+    <Compile Include="V5\Response\CampaingReport_GetCampaignLogsExtendedResponse.cs" />
     <Compile Include="V5\Response\CampaingReport_LiveNumberStatusResponse.cs" />
     <Compile Include="V5\Response\CampaingReport_GetCampaignLogsResponse.cs" />
     <Compile Include="V5\Response\CampaingReport_GetCampaignStatusResponse.cs" />

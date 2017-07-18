@@ -328,6 +328,71 @@ namespace Zamanak.WebService.V5
                 }
             }
 
+            public CampaingReport_GetCampaignLogsExtendedResponse GetCampaignLogsExtended(CampaignReport_GetCampaignLogsExtendedRequest req)
+            {
+                try
+                {
+                    JObject jObj = new JObject();
+                    jObj.Add("method", "getCampaignLogsExtended");
+                    jObj.Add("clientId", "api@zamanak.ir");
+                    jObj.Add("clientSecret", "9AmbEG61AgW3CQoSV1p3A4tS9CZ");
+                    jObj.Add("uid", config.UID);
+                    jObj.Add("token", config.Token);
+                    jObj.Add("campId", req.CampId);
+                    jObj.Add("page", req.Page);
+
+
+                    var request = new RestRequest(config.ApiPath, Method.POST);
+                    request.AddQueryParameter("req", jObj.ToString());
+                    request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                    IRestResponse response = client.Execute(request);
+
+                    if ((int)response.StatusCode == 400)
+                        throw new ZamanakException("INVALID_TAG_VALUE", 400);
+
+                    if ((int)response.StatusCode != 200)
+                        throw new ZamanakException("UNKNOWN_ERROR", (int)response.StatusCode);
+
+                    JObject jResponse = JObject.Parse(response.Content);
+
+                    JToken error = jResponse.GetValue("error");
+                    if (error != null)
+                        throw new ZamanakException(error.ToString(), ZamanakException.BAD_REQUEST);
+
+                    JArray jData = (JArray)jResponse["data"];
+                    var data = new List<GetCampaignLogsExtendedItemResponse>();
+                    for (int i = 0; i < jData.Count; i++)
+                    {
+                        data.Add(new GetCampaignLogsExtendedItemResponse()
+                        {
+                            CampaignLogId = jData[i]["campaignLogId"].ToString(),
+                            CampaignId = jData[i]["campaignId"].ToString(),
+                            PhoneNumber = jData[i]["phoneNumber"].ToString(),
+                            Status = jData[i]["status"].ToString(),
+                            Billsec = jData[i]["billsec"].ToString(),
+                            ContactFirstName = jData[i]["contactFirstName"].ToString(),
+                            ContactLastName = jData[i]["contactLastName"].ToString(),
+                            Response = jData[i]["response"].ToString(),
+                            CS = jData[i]["cs"].ToString()
+                        });
+                    }
+                    var res = new CampaingReport_GetCampaignLogsExtendedResponse()
+                    {
+                        Data = data,
+                        Successfull = int.Parse(jResponse["successfull"].ToString()),
+                        Unsuccessfull = int.Parse(jResponse["unsuccessfull"].ToString()),
+                        Total = int.Parse(jResponse["total"].ToString())
+                    };
+
+                    return res;
+                }
+                catch (Exception ex)
+                {
+                    throw new ZamanakException("Some error in calling web service, see inner exception for detail.", ex);
+                }
+            }
+
             public CampaingReport_LiveNumberStatusResponse LiveNumberStatus(CampaignReport_LiveNumberStatusRequest req)
             {
                 try
