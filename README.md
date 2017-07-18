@@ -14,6 +14,7 @@ remember that token is valid for one year.
 + [Create new mix campaign](#create-new-mix-campaign)
 + [Get campaign status](#get-campaign-status)
 + [Get campaign logs](#get-campaign-logs)
++ [Get campaign logs extended](#get-campaign-logs-extended)
 + [Get live number status](#get-live-number-status)
 
 
@@ -131,10 +132,20 @@ var res = client.CampaignReport.GetCampaignStatus(req);
 ```
 
 ### Get campaign logs
+**Note: Items per page is 10**
 
 ```c#
 var req = new CampaignReport_GetCampaignLogsRequest("CAMP_ID", "PAGE_NUMBER");
 var res = client.CampaignReport.GetCampaignLogs(req);
+//process res
+```
+
+### Get campaign logs extended
+**Note: Items per page is 100**
+
+```c#
+var req = new CampaignReport_GetCampaignLogsExtendedRequest("CAMP_ID", "PAGE_NUMBER");
+var res = client.CampaignReport.GetCampaignLogsExtended(req);
 //process res
 ```
 
